@@ -81,10 +81,6 @@ class TestFixture implements FixtureInterface
         }
 
         $index = $db->getIndex();
-        if ($index->exists()) {
-            $index->delete();
-        }
-        $index->create();
 
         $type = $index->getType($this->table);
         $mapping = new ElasticaMapping();
@@ -129,11 +125,6 @@ class TestFixture implements FixtureInterface
      */
     public function drop(ConnectionInterface $db)
     {
-        $index = $db->getIndex();
-        
-        if ($index->exists()) {
-            $index->delete();
-        }
     }
 
     /**
