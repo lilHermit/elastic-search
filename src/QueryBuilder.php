@@ -42,8 +42,8 @@ class QueryBuilder
      * Returns an Exists query object setup to query documents having a property present
      * or not set to null.
      *
-     * @param string $field The field to check for existance.
-     * @return \Elastica\Filter\Exists
+     * @param string $field The field to check for existence.
+     * @return \Elastica\Query\Exists
      * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-exists-query.html
      */
     public function exists($field)
@@ -213,7 +213,7 @@ class QueryBuilder
     }
 
     /**
-     * Returns an GeohashCell query object setup to query documents having a property
+     * Returns an GeoHashCell query object setup to query documents having a property
      * enclosed inside the specified geohash in teh give precision.
      *
      * ### Example:
@@ -281,7 +281,7 @@ class QueryBuilder
      *
      * @param string|\Elastica\Query|\Elastica\Query\AbstractQuery $query The query.
      * @param string $type The parent type to query against.
-     * @return \Elastica\Filter\HasParent
+     * @return \Elastica\Query\HasParent
      * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-has-parent-query.html
      */
     public function hasParent($query, $type)
@@ -322,7 +322,7 @@ class QueryBuilder
      * in the specified indices.
      * @param \Elastica\Query\AbstractQuery $noMatch Query to apply to documents not present
      * in the specified indices.
-     * @return \Elastica\Filter\Indices
+     * @return \Elastica\Query\Indices
      * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-indices-query.html
      */
     public function indices(array $indices, AbstractQuery $query, AbstractQuery $noMatch)
@@ -518,7 +518,8 @@ class QueryBuilder
      *  $builder->simpleQueryString(['body'], '"fried eggs" +(eggplant | potato) -frittata');
      * }}}
      *
-     * @param array|string The fields to search within
+     * @param array|string $fields The fields to search within
+     * @param string $string The string to query on
      * @return \Elastica\Query\SimpleQueryString
      * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-simple-query-string-query.html
      */
@@ -646,7 +647,7 @@ class QueryBuilder
      *
      * @param string $method The method name.
      * @param array $args The argumemts to pass to the method.
-     * @return \Elastica\Filter\AbstractFilter
+     * @return \Elastica\Query\AbstractQuery
      */
     public function __call($method, $args)
     {
@@ -795,7 +796,7 @@ class QueryBuilder
      *
      * @param string $field The filed name containing the operator
      * @param mixed $value The value to pass to the query
-     * @return \Elastica\Filter\AbstractFilter
+     * @return \Elastica\Query\AbstractQuery
      */
     protected function _parseQuery($field, $value)
     {

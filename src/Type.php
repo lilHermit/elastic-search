@@ -676,7 +676,7 @@ class Type implements RepositoryInterface, EventListenerInterface, EventDispatch
      * time this method is called.
      *
      *
-     * @return array
+     * @return \Cake\ElasticSearch\Datasource\MappingSchema
      */
     public function schema()
     {
